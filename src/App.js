@@ -1,10 +1,13 @@
 import React, { useState } from "react"
 import { ThemeProvider } from 'styled-components';
-import { Form } from "./Components/Form/Form";
 import { GlobalStyle } from "./GlobalStyles"
-
+import { Menu } from "./Components/Menu/Index"
+import { Nav } from "./Components/Nav/Index"
+import { Container } from './Components/Container/Index'
 
 function App() {
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const theme = {
     primary_color: "#000",
@@ -20,10 +23,12 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Form/>
+
+        <Nav isOpen={isOpen} setIsOpen={setIsOpen} />
+        <Menu isOpen={isOpen} />
+        <Container isOpen={isOpen}/>
+
       </ThemeProvider>
-
-
     </>
   );
 }
