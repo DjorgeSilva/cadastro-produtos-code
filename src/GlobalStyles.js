@@ -12,5 +12,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body{
         background: ${props=> props.theme.primary_color};
+        overflow-x: hidden;
+
     }
 `;

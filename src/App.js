@@ -8,6 +8,8 @@ import { Container } from './Components/Container/Index'
 function App() {
 
   const [isOpen, setIsOpen] = useState(false);
+  const [showProdutos, setShowProdutos] = useState(false);
+  const [showRetirada, setShowRetirada] = useState(true);
 
   const theme = {
     primary_color: "#000",
@@ -17,6 +19,7 @@ function App() {
     font_padrao: "Roboto, sans-serif",
     font_secundaria: "Abel, sans-serif",
   };
+
 
 
   return (

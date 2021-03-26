@@ -26,15 +26,23 @@ export const Header = styled.div`
         img{
             width: 200px;
             float: right;
+            margin-left: ${({ isOpen }) => (isOpen ? '400px' : '0')};
+
+            @media (max-width: 1350px){
+                margin-left: ${({ isOpen }) => (isOpen ? '0' : '0')};
+            }
 
         }
     }
 
     .box-icone-menu{
         width: 10%;
-        height: 100%;
+        height: fit-content;
         float: left;
         z-index: 10000000;
+        position: fixed;
+        top: 10px;
+        left: 20px;
 
         .icone-menu{
             cursor: pointer;
@@ -43,7 +51,7 @@ export const Header = styled.div`
         }
 
         .icone-menu:hover{
-            color: red;
+            color: #fff;
         }
 
 

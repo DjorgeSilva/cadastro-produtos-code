@@ -51,21 +51,10 @@ export const Cadastro = () => {
 
             alert("produto cadastrado com sucesso!")
 
-            setCod_barras("");
-            setDesc_produto("");
-            setCod_interno("");
-            setQtd("");
-            setMarca("");
-            setCategoria("");
-            setUnd("");
-            setKit("");
-            setFornecedor("");
-            setLocalizacao_produto("");
-            setData_compra("");
-            setData_fabricacao("")
-            setData_validade("");
-            setPreco_venda("");
-            setPreco_compra("");
+
+            var inputs = document.querySelectorAll('input');
+            inputs.forEach(input =>  input.value = '');
+
         } else {
             alert("Preencha todos os campos.")
         }
@@ -84,30 +73,30 @@ export const Cadastro = () => {
                     <Row>
                         <Col xs={12} md={4}>
                             <label htmlFor="cod_barras">Código de barras: </label>
-                            <input type="number" name="cod_barras" id="cod_barras" value={cod_barras} onChange={(e) => setCod_barras(e.target.value)} />
+                            <input type="number" name="cod_barras" id="cod_barras" className="input" value={cod_barras} onChange={(e) => setCod_barras(e.target.value)} />
                         </Col>
 
                         <Col xs={12} md={4}>
                             <label htmlFor="desc_produto">Produto: </label>
-                            <input type="text" name="desc_produto" id="desc_produto" value={desc_produto} onChange={(e) => setDesc_produto(e.target.value)} />
+                            <input type="text" name="desc_produto" id="desc_produto" className="input" value={desc_produto} onChange={(e) => setDesc_produto(e.target.value)} />
                         </Col>
 
                         <Col xs={12} md={4}>
                             <label htmlFor="cod_interno">Código Interno: </label>
-                            <input type="number" name="cod_interno" id="cod_interno" value={cod_interno} onChange={(e) => setCod_interno(e.target.value)} />
+                            <input type="number" name="cod_interno" id="cod_interno" className="input" value={cod_interno} onChange={(e) => setCod_interno(e.target.value)} />
                         </Col>
 
                         <Col xs={12} md={4}>
                             <label htmlFor="marca">Marca / Modelo: </label>
-                            <input type="text" name="marca" id="marca" value={marca} onChange={(e) => setMarca(e.target.value)} />
+                            <input type="text" name="marca" id="marca" className="input" value={marca} onChange={(e) => setMarca(e.target.value)} />
                         </Col>
 
                         <Col xs={12} md={4}>
                             <label htmlFor="categoria">Categoria: </label>
-                            <select name="categoria" id="categoria" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                            <select name="categoria" id="categoria" className="input" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
                                 <option value="PEÇA">PEÇA</option>
                                 <option value="EQUIPAMENTO">EQUIPAMENTO</option>
-                                <option value="Categoria 3">Categoria 3</option>
+                                <option value="FERRAGENS">FERRAGENS</option>
                                 <option value="Categoria 4">Categoria 4</option>
                                 <option value="Categoria 5">Categoria 5</option>
                                 <option value="Categoria 6">Categoria 6</option>
@@ -117,12 +106,12 @@ export const Cadastro = () => {
 
                         <Col xs={12} md={4}>
                             <label htmlFor="qtd">Quantidade </label>
-                            <input type="number" name="qtd" id="qtd" value={qtd} onChange={(e) => setQtd(e.target.value)} />
+                            <input type="number" name="qtd" id="qtd" className="input" value={qtd} onChange={(e) => setQtd(e.target.value)} />
                         </Col>
 
                         <Col xs={12} md={4}>
                             <label htmlFor="und">Unid. Medida: </label>
-                            <select name="und" id="und" value={und} onChange={(e) => setUnd(e.target.value)}>
+                            <select name="und" id="und" value={und} className="input" onChange={(e) => setUnd(e.target.value)}>
                                 <option value="MT">MT</option>
                                 <option value="UND">UND</option>
                                 <option value="KG">KG</option>
@@ -135,7 +124,7 @@ export const Cadastro = () => {
 
                         <Col xs={12} md={4}>
                             <label htmlFor="kit">Kit: </label>
-                            <select name="kit" id="kit" value={kit} onChange={(e) => setKit(e.target.value)}>
+                            <select name="kit" id="kit" value={kit} className="input" onChange={(e) => setKit(e.target.value)}>
                                 <option value="Kit 1">Kit 1</option>
                                 <option value="Kit 2">Kit 2</option>
                                 <option value="Kit 3">Kit 3</option>
@@ -146,40 +135,40 @@ export const Cadastro = () => {
 
                         <Col xs={12} md={4}>
                             <label htmlFor="localizacao">Localização:</label>
-                            <input type="text" name="localizacao" id="localizacao" value={localizacao_produto} onChange={(e) => setLocalizacao_produto(e.target.value)} />
+                            <input type="text" name="localizacao" id="localizacao" className="input" value={localizacao_produto} onChange={(e) => setLocalizacao_produto(e.target.value)} />
                         </Col>
 
                         <Col xs={12} md={4}>
                             <label htmlFor="fornecedor">fornecedor:</label>
-                            <input type="text" name="fornecedor" id="fornecedor" value={fornecedor} onChange={(e) => setFornecedor(e.target.value)} />
+                            <input type="text" name="fornecedor" id="fornecedor" className="input" value={fornecedor} onChange={(e) => setFornecedor(e.target.value)} />
                         </Col>
 
 
                         <Col xs={12} md={4}>
                             <label htmlFor="data_compra">Data da Compra: </label>
-                            <input type="date" name="data_compra" id="data_compra" value={data_compra} onChange={(e) => setData_compra(e.target.value)} />
+                            <input type="date" name="data_compra" id="data_compra" className="input" value={data_compra} onChange={(e) => setData_compra(e.target.value)} />
 
                         </Col>
 
                         <Col xs={12} md={4}>
                             <label htmlFor="data_fabricacao">Data fabricação: </label>
-                            <input type="date" name="data_fabricacao" id="data_fabricacao" value={data_fabricacao} onChange={(e) => setData_fabricacao(e.target.value)} />
+                            <input type="date" name="data_fabricacao" id="data_fabricacao" className="input" value={data_fabricacao} onChange={(e) => setData_fabricacao(e.target.value)} />
                         </Col>
 
                         <Col xs={12} md={4}>
                             <label htmlFor="data_validade">Data da Validade: </label>
-                            <input type="date" name="data_validade" id="data_validade" value={data_validade} onChange={(e) => setData_validade(e.target.value)} />
+                            <input type="date" name="data_validade" id="data_validade" className="input" value={data_validade} onChange={(e) => setData_validade(e.target.value)} />
                         </Col>
 
                         <Col xs={12} md={4}>
                             <label htmlFor="preco_compra">Preço de Compra: </label>
-                            <input type="number" name="preco_compra" id="preco_compra" value={preco_compra} onChange={(e) => setPreco_compra(e.target.value)} />
+                            <input type="number" name="preco_compra" id="preco_compra" className="input" value={preco_compra} onChange={(e) => setPreco_compra(e.target.value)} />
                         </Col>
 
 
                         <Col xs={12} md={4}>
                             <label htmlFor="preco_venda">Preço de venda: </label>
-                            <input type="number" name="preco_venda" id="preco_venda" value={preco_venda} onChange={(e) => setPreco_venda(e.target.value)} />
+                            <input type="number" name="preco_venda" id="preco_venda" className="input" value={preco_venda} onChange={(e) => setPreco_venda(e.target.value)} />
                         </Col>
 
 

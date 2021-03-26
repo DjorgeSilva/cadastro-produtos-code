@@ -3,19 +3,18 @@ import styled from "styled-components"
 export const Container = styled.div`
     width: 100%;
     height: fit-content;
-    padding: 20px;
+    margin-bottom: 30px;
 
+    
     h1{
         width: 100%;
         font-size: clamp(1.2rem, 2.5vw, 2rem);
         text-transform: uppercase;
         text-align: center;
         color: ${props => props.theme.ternary_color};
-        margin-bottom: 30px;
-        padding-top: 8px;
+        background: #000;
+        padding: 20px;
     }
-
-
 `
 
 export const Busca = styled.div`
@@ -138,6 +137,7 @@ export const DataBusca = styled.div`
         margin-top: 20px;
         border-radius: 10px;
         padding: 10px 0;
+        margin-bottom: 20px;
     }
 
     .coluna-resultado-busca{

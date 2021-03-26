@@ -12,11 +12,12 @@ import { Row, Col, Popover, OverlayTrigger } from "react-bootstrap"
 import { BiErrorAlt } from "react-icons/bi"
 import firebase from "../../../utils/firebase"
 import { BsSearch } from "react-icons/bs"
+import { Retirada } from "../Cadastro/Retirada"
 
-export const Consulta = () => {
+export const ConsultarRetirada = () => {
 
     const [recebeFiltroBusca, recebeRecebeFiltroBusca] = useState([]);
-    const [valorDigitado, setValorDigitado] = useState(" ");
+    const [valorDigitado, setValorDigitado] = useState("");
     const [allProdutos, setAllProdutos] = useState([]);
     const [filtroBuscaProduto, setFiltroBuscaProduto] = useState(true);
     const [filtroBuscaCodigo, setFiltroBuscaCodigo] = useState(true);
@@ -52,9 +53,9 @@ export const Consulta = () => {
         recebeRecebeFiltroBusca( // filtra todos os dados de acordo com as condições dos inputs da variavél (data)
             allProdutos.filter(item => { //armazena cada item na variável - state (FilteredData)
                 return item.desc_produto.toString().toLowerCase().indexOf(valorDigitado.toString().toLowerCase()) > -1 ||
-                (filtroBuscaCodigo && item.cod_interno.toString().toLowerCase().indexOf(valorDigitado.toString().toLowerCase()) > -1) ||
-                filtroBuscaNSerie && item.cod_barras.toString().toLowerCase().indexOf(valorDigitado.toString().toLowerCase()) > -1  ||
-                filtroBuscaLocalizacao && item.localizacao_produto.toString().toLowerCase().indexOf(valorDigitado.toString().toLowerCase()) > -1  
+                    (filtroBuscaCodigo && item.cod_interno.toString().toLowerCase().indexOf(valorDigitado.toString().toLowerCase()) > -1) ||
+                    filtroBuscaNSerie && item.cod_barras.toString().toLowerCase().indexOf(valorDigitado.toString().toLowerCase()) > -1 ||
+                    filtroBuscaLocalizacao && item.localizacao_produto.toString().toLowerCase().indexOf(valorDigitado.toString().toLowerCase()) > -1
             })
         )
     }, [valorDigitado]) // executa toda vez que algum dos <= states é alterado 
@@ -64,15 +65,6 @@ export const Consulta = () => {
 
         moreInfo.style.display = "block";
     }
-
-    // const item_popover = (
-    //     <Popover id="popover-basic">
-    //       <Popover.Title as="h3">Item</Popover.Title>
-    //       <Popover.Content>
-    //         And here's some <strong>amazing</strong> {allProdutos.item}
-    //       </Popover.Content>
-    //     </Popover>
-    //   );
 
 
     const item_popover = ( // exibe quando hovering em rentabilidade mês 
@@ -97,44 +89,55 @@ export const Consulta = () => {
         </Popover>
     );
 
-    //   const item_popover = ({data}) => {
-    //     return(
-    //         <Popover id="popover-basic">
-    //         <Popover.Title as="h3">Item</Popover.Title>
-    //         <Popover.Content>
-    //           And here's some <strong>amazing</strong> content. It's very engaging.
-    //           right?
-    //         </Popover.Content>
-    //       </Popover>
-    //     )
-    // }
+
+
+    const [recebeData, setRecebeData] = useState([])
+    const sendData = (cod_barras, desc_produto, qtd, und, localizacao_produto, cod_interno) => {
+
+        let arrayProdutos =
+        {
+            cod_barras,
+            desc_produto,
+            qtd,
+            und,
+            localizacao_produto,
+            cod_interno
+        };
+
+        setRecebeData(arrayProdutos)
+
+        console.log(recebeData)
+    }
+
 
 
     return (
 
         <Container>
-            <h1>Consultar Produtos</h1>
+
+            <h1>Entregas de Produtos</h1>
+
             <Busca>
 
                 <div className="wrap-filtros">
 
                     <div className="box-filtros">
-                        <input type="checkbox" id="produtos" name="produtos" checked={filtroBuscaProduto} onClick={()=> setFiltroBuscaProduto(!filtroBuscaProduto)} />
+                        <input type="checkbox" id="produtos" name="produtos" checked={filtroBuscaProduto} onClick={() => setFiltroBuscaProduto(!filtroBuscaProduto)} />
                         <label for="produtos">Produtos</label>
                     </div>
 
                     <div className="box-filtros">
-                        <input type="checkbox" id="codigo" name="codigo" checked={filtroBuscaCodigo} onClick={()=> setFiltroBuscaCodigo(!filtroBuscaCodigo)} />
+                        <input type="checkbox" id="codigo" name="codigo" checked={filtroBuscaCodigo} onClick={() => setFiltroBuscaCodigo(!filtroBuscaCodigo)} />
                         <label for="codigo">Código</label>
                     </div>
 
                     <div className="box-filtros">
-                        <input type="checkbox" id="num_serie" name="num_serie" checked={filtroBuscaNSerie} onClick={()=> setFiltroBuscaNSerie(!filtroBuscaNSerie)} />
+                        <input type="checkbox" id="num_serie" name="num_serie" checked={filtroBuscaNSerie} onClick={() => setFiltroBuscaNSerie(!filtroBuscaNSerie)} />
                         <label for="num_serie">Nº Série</label>
                     </div>
 
                     <div className="box-filtros">
-                        <input type="checkbox" id="localization" name="localization" checked={filtroBuscaLocalizacao} onClick={()=> setFiltroBuscaLocalizacao(!filtroBuscaLocalizacao)}/>
+                        <input type="checkbox" id="localization" name="localization" checked={filtroBuscaLocalizacao} onClick={() => setFiltroBuscaLocalizacao(!filtroBuscaLocalizacao)} />
                         <label for="localization">Localização</label>
                     </div>
 
@@ -148,7 +151,6 @@ export const Consulta = () => {
             </Busca>
 
             <ResultadoBusca>
-
                 <TitleResultadoBusca>
                     <div className="container" style={{ maxWidth: '100%' }}>
                         <Row style={{ margin: 0, maxWidth: "100%" }}>
@@ -196,7 +198,7 @@ export const Consulta = () => {
                 {recebeFiltroBusca.length > 0 ? recebeFiltroBusca.map((item) => {
                     return (
                         <>
-                            <DataBusca onClick={console.log("teste")} onCLick={openMoreInfo}>
+                            <DataBusca onClick={() => sendData(item.cod_barras, item.desc_produto, item.qtd, item.und, item.localizacao_produto, item.cod_interno)}>
                                 <div className="container" style={{ maxWidth: '100%' }}>
                                     <Row style={{ margin: 0, maxWidth: "100%" }}>
 
@@ -334,12 +336,13 @@ export const Consulta = () => {
                 }) :
                     <NoDataBusca>
                         <div className="no-data-message">
-                            <p><BiErrorAlt className="icone-no-data" /> Nenhum produto encontrado <BiErrorAlt className="icone-no-data" /></p>
+                            <p><BiErrorAlt className="icone-no-data" /> Nenhum entrega encontrada <BiErrorAlt className="icone-no-data" /></p>
                         </div>
                     </NoDataBusca>
                 }
 
             </ResultadoBusca>
+            <Retirada recebeData={recebeData} />
         </Container >
     )
 }

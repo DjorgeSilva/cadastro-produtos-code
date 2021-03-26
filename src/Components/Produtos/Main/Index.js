@@ -9,11 +9,11 @@ export const Produtos = () => {
         <Container className="container">
 
             <Tabs defaultActiveKey="profile" id="tabs-produtos" >
-                <Tab eventKey="home" title="Consulta">
+                <Tab eventKey="home" title="Consultar Produtos">
                     <Consulta />
                 </Tab>
 
-                <Tab eventKey="profile" title="Cadastro">
+                <Tab eventKey="profile" title="Cadastrar Produtos">
                     <Cadastro />
                 </Tab>
             </Tabs>

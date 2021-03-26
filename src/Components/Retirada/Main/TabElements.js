@@ -14,9 +14,9 @@ export const Container = styled.div`
         background-color: #fff!important;
         color: #000;
         font-weight: bolder;
-    }   
+    }
     a{
         color: #fff;
         font-weight: bolder;
-    }    
+    }     
 `

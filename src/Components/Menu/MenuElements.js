@@ -9,6 +9,8 @@ export const Container = styled.div`
     left: ${({ isOpen }) => (isOpen ? '0' : '-1000px')};
     z-index: 10;
     box-shadow: 5px 5px 10px #000;
+    overflow-y: hidden;
+    z-index:100;
 
     @media (max-width: 400px){
         width: 300px;
